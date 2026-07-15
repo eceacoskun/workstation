@@ -1,0 +1,18 @@
+# Secrets — asla commit'lenmez (sadece *.example versiyonlari repo'da)
+gateway/config.yaml
+env
+*.key
+*.crt
+
+# Loglar
+*.jsonl
+/var/log/
+
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Editor / OS
+.claude/settings.local.json
+.DS_Store

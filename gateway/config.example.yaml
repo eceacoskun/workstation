@@ -1,0 +1,24 @@
+# gateway/config.yaml olarak kopyala ve duzenle.
+# vLLM'de --served-model-name ne verdiysen "model" alani onunla ayni olmali.
+
+backends:
+  llm:
+    url: http://127.0.0.1:8001
+    model: qwen                # start-qwen.sh -> --served-model-name qwen
+  embedding:
+    url: http://127.0.0.1:8002
+    model: qwen3-embedding     # start-embed.sh -> --served-model-name qwen3-embedding
+
+# Her proje ayri bir URL prefix'i (/{project}/v1/...) ve ayri log dosyasi alir.
+# keys: bu projenin gecerli API anahtarlari (birden fazla olabilir -> rotasyon).
+# allowed: projenin erisebildigi backend'ler.
+projects:
+  proj-a:
+    keys:
+      - "sk-proja-CHANGEME-xxxxxxxxxxxxxxxxxxxxxxxx"
+    allowed: [llm, embedding]
+
+  proj-b:
+    keys:
+      - "sk-projb-CHANGEME-yyyyyyyyyyyyyyyyyyyyyyyy"
+    allowed: [llm]

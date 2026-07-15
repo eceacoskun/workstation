@@ -1,0 +1,20 @@
+[Unit]
+Description=vLLM Qwen3 Embedding (GPU0, LLM ile co-located)
+# Ayni GPU'da: LLM once VRAM ayirmali, embed sonra baslamali.
+After=network-online.target vllm-qwen.service
+Wants=network-online.target
+Requires=vllm-qwen.service
+
+[Service]
+Type=simple
+User=llm
+Group=llm
+EnvironmentFile=-/opt/llm-gateway/env
+ExecStart=/opt/llm-gateway/scripts/start-embed.sh
+Restart=always
+RestartSec=5
+TimeoutStartSec=600
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,18 @@
+[Unit]
+Description=vLLM Qwen LLM (GPU0)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=llm
+Group=llm
+EnvironmentFile=-/opt/llm-gateway/env
+ExecStart=/opt/llm-gateway/scripts/start-qwen.sh
+Restart=always
+RestartSec=5
+TimeoutStartSec=600
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
